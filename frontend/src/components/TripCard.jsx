@@ -10,7 +10,7 @@ export default function TripCard({ trip }) {
       {/* Image */}
       <div className="relative overflow-hidden h-48">
         <img
-          src={`${process.env.NEXT_PUBLIC_API_URL}/api/images/${trip.destination}`}
+          src={`${process.env.NEXT_PUBLIC_API_URL}/images/${trip.destination}`}
           alt={trip.destination}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
