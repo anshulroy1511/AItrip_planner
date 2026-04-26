@@ -152,7 +152,7 @@ export default function TripDetailsPage({ params }) {
       {/* ── Hero Image ─────────────────────────────────────────────────────── */}
       <div className="relative h-80 sm:h-96 overflow-hidden">
         <img
-          src={`${process.env.NEXT_PUBLIC_API_URL}/api/images/${trip.destination}`}
+          src={`${process.env.NEXT_PUBLIC_API_URL}/images/${trip.destination}`}
           alt={trip.destination}
           className="h-full w-full object-cover"
         />
