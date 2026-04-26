@@ -1,0 +1,12 @@
+# dependencies
+node_modules
+
+# next build
+frontend/.next
+
+# env files
+.env
+backend/.env
+
+# logs
+*.log
