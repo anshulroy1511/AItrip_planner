@@ -92,55 +92,6 @@ App runs at `http://localhost:3000`
 
 ---
 
-## 🔐 Authentication & Authorization
-
-- Users register with name, email, and password
-- Passwords are hashed using **bcrypt** before storage
-- On login, a signed **JWT** is returned and stored client-side
-- All trip routes are protected by the `protect` middleware, which validates the JWT on every request
-- Every trip query is scoped to `req.user._id` — users can only read or modify their own data
-- No trip endpoint exposes another user's data under any condition
-
----
-
-## 🤖 AI Agent Design
-
-The AI agent is powered by **OpenAI GPT-4o Mini** via the Chat Completions API.
-
-### How it works:
-
-**Trip Generation**  
-A structured prompt is built from the user's inputs (destination, days, budget, interests) and sent to GPT-4o Mini. The model returns a JSON-structured day-by-day itinerary and a budget breakdown.
-
-**Day Regeneration**  
-When a user requests to regenerate a specific day, the existing itinerary context plus the target day and new preference (e.g. "more outdoor activities") are sent back to the model. Only that day's activities are replaced — the rest of the itinerary is preserved.
-
-**Prompt Design Principle:**  
-Prompts enforce JSON-only responses with a defined schema so the backend can reliably parse and store structured output without any post-processing guesswork.
-
----
-
-## 📡 API Endpoints
-
-### Auth
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/auth/register` | Register a new user |
-| POST | `/api/auth/login` | Login and receive JWT |
-
-### Trips (all protected — JWT required)
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/trips` | Generate a new AI trip |
-| GET | `/api/trips` | Fetch all trips for logged-in user |
-| GET | `/api/trips/dashboard` | Fetch trips for dashboard summary |
-| GET | `/api/trips/:id` | Get a specific trip by ID |
-| PUT | `/api/trips/:id/add-activity` | Add an activity to a day |
-| PUT | `/api/trips/:id/remove-activity` | Remove an activity from a day |
-| PUT | `/api/trips/:id/regenerate-day` | Regenerate a specific day via AI |
-
----
-
 ## 🌐 Deployed Setup
 
 | Service | Platform |
@@ -248,6 +199,57 @@ TRIO/
 │
 └── README.md
 ```
+
+
+## 🔐 Authentication & Authorization
+
+- Users register with name, email, and password
+- Passwords are hashed using **bcrypt** before storage
+- On login, a signed **JWT** is returned and stored client-side
+- All trip routes are protected by the `protect` middleware, which validates the JWT on every request
+- Every trip query is scoped to `req.user._id` — users can only read or modify their own data
+- No trip endpoint exposes another user's data under any condition
+
+---
+
+## 🤖 AI Agent Design
+
+The AI agent is powered by **OpenAI GPT-4o Mini** via the Chat Completions API.
+
+### How it works:
+
+**Trip Generation**  
+A structured prompt is built from the user's inputs (destination, days, budget, interests) and sent to GPT-4o Mini. The model returns a JSON-structured day-by-day itinerary and a budget breakdown.
+
+**Day Regeneration**  
+When a user requests to regenerate a specific day, the existing itinerary context plus the target day and new preference (e.g. "more outdoor activities") are sent back to the model. Only that day's activities are replaced — the rest of the itinerary is preserved.
+
+**Prompt Design Principle:**  
+Prompts enforce JSON-only responses with a defined schema so the backend can reliably parse and store structured output without any post-processing guesswork.
+
+---
+
+## 📡 API Endpoints
+
+### Auth
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register a new user |
+| POST | `/api/auth/login` | Login and receive JWT |
+
+### Trips (all protected — JWT required)
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/trips` | Generate a new AI trip |
+| GET | `/api/trips` | Fetch all trips for logged-in user |
+| GET | `/api/trips/dashboard` | Fetch trips for dashboard summary |
+| GET | `/api/trips/:id` | Get a specific trip by ID |
+| PUT | `/api/trips/:id/add-activity` | Add an activity to a day |
+| PUT | `/api/trips/:id/remove-activity` | Remove an activity from a day |
+| PUT | `/api/trips/:id/regenerate-day` | Regenerate a specific day via AI |
+
+---
+
 
 ## ✨ Creative Custom Features
 
