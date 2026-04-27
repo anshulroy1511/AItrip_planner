@@ -30,6 +30,7 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       const response = await API.post("/auth/register", formData);
+      localStorage.setItem("token", response.data.token); 
       toast.success("Registration successful!");
       console.log(response.data);
       router.push("/dashboard");
