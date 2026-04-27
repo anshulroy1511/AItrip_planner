@@ -2,7 +2,7 @@
 
 An intelligent, multi-user travel itinerary generator powered by OpenAI GPT-4o Mini and enriched with Unsplash destination imagery. Plan trips, customize itineraries day-by-day, and manage all your travel plans in one place.
 
-🔗 **Live Demo:** [your-deployed-url.com](https://your-deployed-url.com)  
+🔗 **Live Demo:** [your-deployed-url.com](https://aitrip-planner-frontend.onrender.com)  
 📹 **Walkthrough Video:** [Watch here](https://your-video-link.com)
 
 ---
@@ -42,7 +42,7 @@ AI Travel Planner lets authenticated users:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ai-travel-planner.git
+git clone https://github.com/anshulroy1511/AItrip_planner.git
 cd ai-travel-planner
 ```
 
@@ -140,50 +140,62 @@ Environment variables are configured via each platform's dashboard — no secret
 └─────────────────────────────────────────────┘
 ```
 
-
 ## 📁 Folder Structure
 
 ```
-ai-travel-planner/
+TRIO/
 ├── backend/
-│   ├── controllers/
-│   │   ├── auth.controller.js       # Register, login logic
-│   │   └── trip.controller.js       # Create, fetch, edit, regenerate trips
-│   ├── middleware/
-│   │   └── auth.middleware.js       # JWT protect() guard
-│   ├── models/
-│   │   ├── User.js                  # User schema (name, email, password)
-│   │   └── Trip.js                  # Trip schema (itinerary, alerts, image)
-│   ├── routes/
-│   │   ├── auth.routes.js           # POST /register, /login
-│   │   └── trip.routes.js           # All /api/trips endpoints
-│   ├── services/
-│   │   ├── openai.service.js        # Prompt builder + GPT-4o Mini calls
-│   │   └── unsplash.service.js      # Destination image fetch
-│   ├── .env                         # Environment variables (not committed)
-│   └── server.js                    # Express app entry point
+│   └── src/
+│       ├── config/
+│       │   └── db.js                    # MongoDB connection setup
+│       ├── controllers/
+│       │   ├── auth.controller.js       # Register, login logic
+│       │   └── trip.controller.js       # Create, fetch, edit, regenerate trips
+│       ├── middleware/
+│       │   └── auth.middleware.js       # JWT protect() guard
+│       ├── models/
+│       │   ├── Trip.js                  # Trip schema (itinerary, alerts, image)
+│       │   └── User.js                  # User schema (name, email, password)
+│       ├── routes/
+│       │   ├── auth.routes.js           # POST /register, /login
+│       │   ├── image.routes.js          # Unsplash image endpoints
+│       │   ├── test.routes.js           # Health check / test routes
+│       │   └── trip.routes.js           # All /api/trips endpoints
+│       ├── services/
+│       │   ├── ai.service.js            # Prompt builder + GPT-4o Mini calls
+│       │   └── image.service.js         # Unsplash destination image fetch
+│       ├── utils/
+│       │   └── generateToken.js         # JWT token generation helper
+│       └── server.js                    # Express app entry point
+│   ├── .env                             # Environment variables (not committed)
+│   ├── package.json
+│   └── package-lock.json
 │
 ├── frontend/
-│   ├── components/
-│   │   ├── TripCard.jsx             # Dashboard trip preview card
-│   │   ├── ItineraryDay.jsx         # Day view with activities + alerts
-│   │   ├── AlertBadge.jsx           # info / warning / critical alert UI
-│   │   ├── ActivityItem.jsx         # Single activity with delete button
-│   │   └── Navbar.jsx               # Top navigation bar
-│   ├── pages/
-│   │   ├── index.jsx                # Landing / home page
-│   │   ├── login.jsx                # Login page
-│   │   ├── register.jsx             # Register page
-│   │   ├── dashboard.jsx            # User's trip dashboard
-│   │   ├── create-trip.jsx          # Trip input form
-│   │   └── trips/
-│   │       └── [id].jsx             # Trip detail + itinerary editor
-│   ├── hooks/
-│   │   └── useAuth.js               # Auth state + token management
-│   ├── utils/
-│   │   └── api.js                   # Axios instance with JWT header
-│   ├── .env.local                   # Frontend env vars (not committed)
-│   └── tailwind.config.js
+│   └── src/
+│       ├── app/
+│       │   ├── create-trip/
+│       │   │   └── page.jsx             # Trip input form
+│       │   ├── dashboard/
+│       │   │   └── page.jsx             # User's trip dashboard
+│       │   ├── login/
+│       │   │   └── page.jsx             # Login page
+│       │   ├── register/
+│       │   │   └── page.jsx             # Register page
+│       │   ├── trip/[id]/
+│       │   │   └── page.jsx             # Trip detail + itinerary editor
+│       │   ├── globals.css              # Global styles
+│       │   ├── layout.js                # Root layout wrapper
+│       │   └── page.js                  # Landing / home page
+│       ├── components/
+│       │   └── TripCard.jsx             # Dashboard trip preview card
+│       └── services/
+│           └── api.js                   # Axios instance with JWT header
+│   ├── public/                          # Static assets
+│   ├── .gitignore
+│   ├── eslint.config.mjs
+│   ├── jsconfig.json
+│   └── next.config.mjs
 │
 └── README.md
 ```
