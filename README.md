@@ -3,7 +3,7 @@
 An intelligent, multi-user travel itinerary generator powered by OpenAI GPT-4o Mini and enriched with Unsplash destination imagery. Plan trips, customize itineraries day-by-day, and manage all your travel plans in one place.
 
 🔗 **Live Demo:** [www.aitripplanner.com](https://aitrip-planner-frontend.onrender.com)  
-📹 **Walkthrough Video:** [Watch here](https://your-video-link.com)
+📹 **Walkthrough Video:** [Watch here](https://www.loom.com/share/50d187df4c424274ab154ca556cdb6db)
 
 ---
 
